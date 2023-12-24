@@ -17,6 +17,17 @@ services:
 #            - ./data/ops/configs/mongo/keyfile:/etc/mongod.keyfile
 #        command: mongod --config /etc/mongod.conf
 
+    jenkins:
+        image: jenkins:2.60.3
+        restart: always
+        ports:
+            - 8003:8080
+            - 50000:50000
+        volumes:
+            - jenkins:/var/jenkins_home
+
 volumes:
     mongo:
+        driver: local
+    jenkins:
         driver: local

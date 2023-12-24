@@ -61,3 +61,10 @@ To run tests, use `npm run test:unit`
 ## Backend
 
 cd to backend folder. Since symfony cli is used, you can run `symfony server:start` to start the development server.
+
+# CI/CD
+
+## Jenkins
+
+To start jenkins, run `docker-compose up jenkins` The administrative password will appear in the terminal. Make sure to
+save it.
