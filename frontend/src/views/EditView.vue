@@ -9,7 +9,7 @@ const {event} = storeToRefs(useEventStore());
 
 const $route = useRoute();
 
-const id = $route.params.id;
+const id = $route.params.id as string;
 
 const fetchEvent = async () => {
     const url = `${import.meta.env.VITE_API_HOST}/api/v1/events/${id}`;
