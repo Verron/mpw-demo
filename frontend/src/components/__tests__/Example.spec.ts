@@ -1,13 +1,13 @@
 import {describe, it, expect} from 'vitest'
 import {mount} from '@vue/test-utils'
-import EventForm from '../EventForm.vue'
+import Example from '../Example.vue'
 import {createTestingPinia} from "@pinia/testing";
 import {vi} from 'vitest';
 
-describe('Form', () => {
+describe('Example', () => {
     it('renders properly', () => {
-        const wrapper = mount(EventForm, {
-            props: {title: 'Register Test'},
+        const wrapper = mount(Example, {
+            props: {title: 'Example Test'},
             plugins: [createTestingPinia({
                 createSpy: vi.fn,
                 initialState: {
@@ -20,6 +20,6 @@ describe('Form', () => {
                 }
             })],
         })
-        expect(wrapper.text()).toContain('Register Test')
+        expect(wrapper.text()).toContain('Example Test')
     })
 })
