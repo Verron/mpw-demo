@@ -3,13 +3,47 @@ pipeline {
 
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 echo 'Building..'
+
+                dir('frontend') {
+
+
+                    sh 'npm ci'
+
+                    sh 'npm run build'
+                }
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 echo 'Testing..'
+
+                dir('frontend') {
+                    sh 'npm run test:unit'
+                }
+            }
+        }
+        stage('Containerize') {
+            steps {
+                echo 'Containerizing....'
+
+                dir('frontend') {
+                    sh 'docker build -t mpw/frontend:latest -f Dockerfile .'
+                    sh 'docker tag mpw/frontend:latest mpw/frontend:v$(date +"%Y.%m.%d.%H%M%S")'
+                }
             }
         }
         stage('Deploy') {

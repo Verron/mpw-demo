@@ -1,5 +1,3 @@
-
-
 .PHONY: build-fe
 build-fe:
 	docker build -t mpw-fe -f frontend/Dockerfile ./frontend
